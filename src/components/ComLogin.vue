@@ -1,48 +1,52 @@
 <template>
   <div class="login-container">
     <h2>Đăng nhập</h2>
+    <!-- Trường nhập tên đăng nhập -->
     <div class="form-group">
       <input v-model="username" placeholder="Tên đăng nhập" />
     </div>
+    <!-- Trường nhập mật khẩu -->
     <div class="form-group">
       <input v-model="password" type="password" placeholder="Mật khẩu" />
     </div>
+    <!-- Nút đăng nhập, khi nhấn gọi hàm login -->
     <button @click="login">Đăng nhập</button>
+    <!-- Hiển thị thông báo lỗi nếu có -->
     <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
 <script>
-import users from '@/data/users';
-import eventBus from '@/eventBus';
+import users from '@/data/users'; // Nhập dữ liệu người dùng từ file users
+import eventBus from '@/eventBus'; // Nhập eventBus để phát thông báo
 
 export default {
   data() {
     return {
-      username: '',//an
-      password: '',//1234
-      error: '',
-      users:users
+      username: '', // Biến lưu tên đăng nhập
+      password: '', // Biến lưu mật khẩu
+      error: '', // Biến lưu thông báo lỗi
+      users: users // Lấy dữ liệu người dùng từ data
     };
   },
- methods:{
-  login()
-  {
-    //kiem tra trong data có tức là đăng ký thành công và đăng nhập thành công
-    const user=this.users.find(x=>x.username===this.username && x.password===this.password)
-    if (user)
-    {
-      //đăng nhập thành công thì lưu đối tượng xuống localstorage
-      localStorage.setItem('curentUser',JSON.stringify(user))
-      eventBus.emit('loginSuccess', user)
-      this.$router.push('/')
-    }
-    else
-    {
-      this.error="Đăng nhập không thành công"
+  methods: {
+    login() {
+      // Kiểm tra xem tên đăng nhập và mật khẩu có khớp với dữ liệu người dùng không
+      const user = this.users.find(x => x.username === this.username && x.password === this.password);
+      
+      if (user) {
+        // Nếu đăng nhập thành công, lưu thông tin người dùng vào localStorage
+        localStorage.setItem('curentUser', JSON.stringify(user));
+        // Phát sự kiện 'loginSuccess' để thông báo đăng nhập thành công
+        eventBus.emit('loginSuccess', user);
+        // Chuyển hướng về trang chủ sau khi đăng nhập thành công
+        this.$router.push('/');
+      } else {
+        // Nếu không thành công, hiển thị thông báo lỗi
+        this.error = "Đăng nhập không thành công";
+      }
     }
   }
- }
 };
 </script>
 

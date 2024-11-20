@@ -1,61 +1,71 @@
-import { createWebHistory,createRouter } from "vue-router";
-import Home from '@/components/ComHome.vue'
-import GioiThieu from '@/components/ComGioiThieu.vue'
-import LienHe from '@/components/ComLienHe.vue'
-import ProductDetail from '@/components/ComProductDetail.vue'
-import Cart from '@/components/ComCart.vue'
-import Register from '@/components/ComRegister'
-import Login from '@/components/ComLogin'
-import HoaDon from '@/components/ComHoaDon'
+// Nhập các thành phần cần thiết từ Vue Router
+import { createWebHistory, createRouter } from "vue-router";
+import Home from '@/components/ComHome.vue';
+import GioiThieu from '@/components/ComGioiThieu.vue';
+import LienHe from '@/components/ComLienHe.vue';
+import ProductDetail from '@/components/ComProductDetail.vue';
+import Cart from '@/components/ComCart.vue';
+import Register from '@/components/ComRegister';
+import Login from '@/components/ComLogin';
+import HoaDon from '@/components/ComHoaDon';
 
-// tạo mảng chứa những đường link
-const routes=[
-    // đối tượng trang chủ
+// Tạo mảng chứa các đối tượng đường dẫn (routes) cho từng trang
+const routes = [
+    // Đối tượng cho trang chủ
     {
-        path:"/",
-        name:"Home",
-        component:Home
+        path: "/",
+        name: "Home",
+        component: Home
     },
-    // đường link ko phải là trang chủ path:"/ten"
+    // Đối tượng cho trang Giới thiệu
     {
-        path:"/gioithieu",
-        name:"GioiThieu",
-        component:GioiThieu
+        path: "/gioithieu",
+        name: "GioiThieu",
+        component: GioiThieu
     },
+    // Đối tượng cho trang Liên hệ
     {
-        path:"/lienhe",
-        name:"LienHe",
-        component:LienHe
+        path: "/lienhe",
+        name: "LienHe",
+        component: LienHe
     },
+    // Đối tượng cho trang Chi tiết sản phẩm (với tham số :id)
     {
-        path:"/product/:id",
-        name:"ProductDetail",
-        component:ProductDetail
+        path: "/product/:id",
+        name: "ProductDetail",
+        component: ProductDetail
     },
+    // Đối tượng cho trang Giỏ hàng
     {
-        path:"/cart",
-        name:"Cart",
-        component:Cart
+        path: "/cart",
+        name: "Cart",
+        component: Cart
     },
+    // Đối tượng cho trang Đăng ký tài khoản
     {
-        path:"/register",
-        name:"DangKy",
-        component:Register
+        path: "/register",
+        name: "DangKy",
+        component: Register
     },
+    // Đối tượng cho trang Đăng nhập
     {
-        path:"/login",
-        name:"DangNhap",
-        component:Login
+        path: "/login",
+        name: "DangNhap",
+        component: Login
     },
+    // Đối tượng cho trang Hóa đơn
     {
-        path:"/hoadon",
-        name:"HoaDon",
-        component:HoaDon
+        path: "/hoadon",
+        name: "HoaDon",
+        component: HoaDon
     }
-]
-// tạo đối tượng router
-const router=createRouter({
-    history:createWebHistory(),
+];
+
+// Tạo đối tượng router với lịch sử trình duyệt và các đường dẫn đã định nghĩa
+const router = createRouter({
+    history: createWebHistory(),
     routes
-})
-export default router
+});
+
+// Xuất đối tượng router để sử dụng trong ứng dụng
+export default router;
