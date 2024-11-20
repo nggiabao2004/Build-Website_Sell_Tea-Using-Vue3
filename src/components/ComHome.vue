@@ -3,9 +3,10 @@
     <div class="menu">
       <!-- Tiêu đề danh sách sản phẩm -->
       <h2 class="menu-title">TẤT CẢ SẢN PHẨM</h2>
+      
       <div class="menu-grid">
         <!-- Duyệt qua từng sản phẩm và hiển thị -->
-        <div class="menu-item" v-for="product in products" :key="product.id">
+        <div class="menu-item" v-for="product in filterproduct" :key="product.id">
           <router-link :to="{ name: 'ProductDetail', params: { id: product.id }}">
             <!-- Hiển thị ảnh sản phẩm -->
             <img :src="product.image" alt="Product Image">
@@ -18,6 +19,19 @@
           </router-link>
         </div>
       </div>
+
+      <!-- Nút phân trang (Prev và Next) -->
+      <div class="pagination">
+        <!-- Nút lùi (Prev) chỉ hiển thị nếu đang ở trang > 1 -->
+        <button v-if="currentpage > 1" @click="changepage(currentpage - 1)">Prev</button>
+        
+        <!-- Hiển thị trang hiện tại và tổng số trang -->
+        <p>{{ currentpage }} of {{ totalpage }}</p>
+
+        <!-- Nút tới (Next) chỉ hiển thị nếu đang ở trang < totalpage -->
+        <button v-if="currentpage < totalpage" @click="changepage(currentpage + 1)">Next</button>
+      </div>
+
     </div>
   </main>
 </template>
@@ -29,14 +43,43 @@ import items from "@/data/items";
 export default {
   data() {
     return {
-      // Dữ liệu sản phẩm
-      products: items
+      // Dữ liệu sản phẩm được import từ file items
+      products: items,
+      
+      // Phân trang
+      currentpage: 1,   // Trang hiện tại
+      limit: 4          // Số lượng sản phẩm hiển thị mỗi trang
     };
+  },
+  
+  computed: {
+    // Tính tổng số trang
+    totalpage() {
+      return Math.ceil(this.products.length / this.limit);
+    },
+    
+    // Lọc sản phẩm hiển thị theo trang hiện tại
+    filterproduct() {
+      const start = (this.currentpage - 1) * this.limit;
+      const end = start + this.limit;
+      return this.products.slice(start, end);
+    }
+  },
+  
+  methods: {
+    // Hàm thay đổi trang khi nhấn nút phân trang
+    changepage(page) {
+      // Kiểm tra trang có hợp lệ không
+      if (page >= 1 && page <= this.totalpage) {
+        this.currentpage = page; // Cập nhật trang hiện tại
+        console.log(this.currentpage); // In ra trang hiện tại (dùng cho debug)
+      }
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
 /* Định dạng cho phần menu */
 .menu {
   text-align: center; /* Căn giữa nội dung */
@@ -97,5 +140,35 @@ export default {
   margin: 0; /* Loại bỏ khoảng cách mặc định */
   color: #fcb034; /* Màu vàng cho giá */
   font-weight: bold; /* Đậm chữ */
+}
+
+/* Phân trang */
+.pagination {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  margin-top: 20px; /* Khoảng cách từ các sản phẩm */
+}
+
+/* Nút phân trang */
+.pagination button,
+.pagination p {
+  margin: 0 5px; /* Khoảng cách giữa các nút */
+  padding: 5px 10px; /* Đệm cho các nút */
+  background-color: #fcb034; /* Màu nền vàng cho nút */
+  border: none; /* Loại bỏ viền */
+  border-radius: 4px; /* Bo góc */
+  cursor: pointer; /* Hiệu ứng con trỏ khi di chuột lên nút */
+}
+
+.pagination button:hover,
+.pagination p:hover {
+  background-color: #e59426; /* Màu nền thay đổi khi hover */
+}
+
+/* Đánh dấu trang hiện tại */
+.pagination button.active {
+  background-color: #333; /* Màu nền nút trang hiện tại */
+  color: white; /* Màu chữ nút trang hiện tại */
 }
 </style>
