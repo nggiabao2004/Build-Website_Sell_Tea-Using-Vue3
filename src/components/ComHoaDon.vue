@@ -68,9 +68,18 @@
       // Hàm thanh toán
       thanhToan() {
         if (this.name && this.phone && this.address) {
+          // Kiểm tra số điện thoại có đúng 10 ký tự số không
+          const phonePattern = /^\d{10}$/; // Biểu thức chính quy kiểm tra 10 ký tự số
+  
+          if (!phonePattern.test(this.phone)) {
+            this.message = "Số điện thoại phải gồm 10 ký tự số!";
+            this.success = false;
+            return; // Dừng lại nếu không hợp lệ
+          }
+
           // Nếu người mua nhập đủ thông tin, hiển thị thông báo thành công
           this.message = "Đã thanh toán thành công!";
-          this.success = true;
+            this.success = true;
   
           // Lưu thông tin đơn hàng vào localStorage để hiển thị ở ComHome
           const orders = JSON.parse(localStorage.getItem('orders')) || [];
