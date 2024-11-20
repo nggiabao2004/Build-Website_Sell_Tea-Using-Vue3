@@ -15,6 +15,8 @@
         </nav>
         <div v-if="user" class="user-info">
           <p>Xin chào, {{ user.username }}</p>
+        </div>
+        <div v-if="user" class="user-info">
           <button @click="logout">Đăng xuất</button>
         </div>
         <div class="cta">
