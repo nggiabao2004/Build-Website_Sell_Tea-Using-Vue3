@@ -16,13 +16,13 @@
             <tr v-for="item in cart" :key="item.id">
                 <td><img :src="item.image" style="height: 100px;width: 100px;"></td>
                 <td class="align-middle">{{item.name}}</td>
-                <td class="align-middle">{{item.price}}</td>
+                <td class="align-middle">{{item.price}}.000</td>
                 <td class="align-middle">
                     <button @click="decreaseQuantity(item)"> - </button>
                         {{item.quantity}}
                     <button @click="increaseQuantity(item)"> + </button>
                 </td>
-                <td class="align-middle">{{ calculatePrice(item) }}</td>
+                <td class="align-middle">{{ calculatePrice(item) }}.000</td>
                 <td class="align-middle">
                     <button class="btn btn-danger" @click="deleteproduct(item)">Xóa</button>
                 </td>
@@ -32,9 +32,7 @@
                             <th></th>
                             <th>Tổng tiền</th>
                             <th>{{ tongsoluong }}</th>
-                            <th>
-                                {{ tongtien }}
-                            </th>
+                            <th>{{ tongtien }}.000 VND</th>
                             <th>
                                 <button class="btn btn-danger" @click="xoahet">Xóa hết</button>
                             </th>
@@ -48,8 +46,7 @@ import cart from '../data/cart'
 export default {
     data(){
         return{
-        
-        cart:cart
+            cart:cart
         }
     },
     computed:{
