@@ -5,7 +5,7 @@ let items = [
     image: require("@/assets/TraSenVang.jpg"), // Hình ảnh của món trà
     description: "KHOE SẮC THĂNG HƯƠNG", // Mô tả chi tiết về món trà
     price: 45, // Giá của món trà
-    quality: 3 // Chất lượng của trà, có thể là đánh giá từ 1 đến 5 (3 là trung bình)
+    quality: 3
   },
   {
     id: 2,

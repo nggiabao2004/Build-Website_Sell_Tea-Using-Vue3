@@ -97,7 +97,8 @@
           this.success = false;
         }
       }
-    }
+    },
+    
   };
   </script>
   
