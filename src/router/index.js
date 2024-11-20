@@ -6,7 +6,7 @@ import ProductDetail from '@/components/ComProductDetail.vue'
 import Cart from '@/components/ComCart.vue'
 import Register from '@/components/ComRegister'
 import Login from '@/components/ComLogin'
-//import HoaDon from '@/components/ComHoaDon'
+import HoaDon from '@/components/ComHoaDon'
 
 // tạo mảng chứa những đường link
 const routes=[
@@ -47,11 +47,11 @@ const routes=[
         name:"DangNhap",
         component:Login
     },
-    // {
-    //     path:"/hoadon",
-    //     name:"HoaDon",
-    //     component:HoaDon
-    // }
+    {
+        path:"/hoadon",
+        name:"HoaDon",
+        component:HoaDon
+    }
 ]
 // tạo đối tượng router
 const router=createRouter({
