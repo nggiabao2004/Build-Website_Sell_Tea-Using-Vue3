@@ -16,13 +16,13 @@
             <tr v-for="item in cart" :key="item.id">
               <td>{{ item.name }}</td>
               <td>{{ item.quantity }}</td>
-              <td>{{ (item.quantity * item.price).toLocaleString('vi-VN') }} VND</td>
+              <td>{{ (item.quantity * item.price).toLocaleString('vi-VN') }}.000 VND</td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
               <td colspan="2" style="text-align: right; font-weight: bold;">Tổng cộng:</td>
-              <td>{{ tongtien.toLocaleString('vi-VN') }} VND</td>
+              <td>{{ tongtien.toLocaleString('vi-VN') }}.000 VND</td>
             </tr>
           </tfoot>
         </table>
