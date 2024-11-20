@@ -2,7 +2,6 @@ import { createWebHistory,createRouter } from "vue-router";
 import Home from '@/components/ComHome.vue'
 import GioiThieu from '@/components/ComGioiThieu.vue'
 import LienHe from '@/components/ComLienHe.vue'
-import TinTuc from '@/components/ComTinTuc.vue'
 import ProductDetail from '@/components/ComProductDetail.vue'
 import Cart from '@/components/ComCart.vue'
 import Register from '@/components/ComRegister'
@@ -27,11 +26,6 @@ const routes=[
         path:"/lienhe",
         name:"LienHe",
         component:LienHe
-    },
-    {
-        path:"/tintuc",
-        name:"TinTuc",
-        component:TinTuc
     },
     {
         path:"/product/:id",
